@@ -1,0 +1,8 @@
+node_modules
+dist
+.vercel
+*.log
+.DS_Store
+
+# handoff archive — not needed for the site
+Deployment Course-handoff.zip

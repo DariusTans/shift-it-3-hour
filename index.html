@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ship It in 3 Hours — เอา vibe code ขึ้น live ใน 3 ชั่วโมง</title>
+<meta name="description" content="เรียนรู้วิธีเอา vibe code ของคุณขึ้นเว็บจริง ให้ลูกค้าเปิดจากมือถือใช้งานได้ ภายใน 3 ชั่วโมง โดยไม่ต้องเป็นโปรแกรมเมอร์">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:#0A0A0A; color:#fff; font-family:'IBM Plex Sans Thai', system-ui, sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  ::selection{ background:#FF6B00; color:#0A0A0A; }
+  @keyframes pulseDot{ 0%,100%{ opacity:1; transform:scale(1);} 50%{ opacity:.35; transform:scale(.7);} }
+  @keyframes floaty{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-10px);} }
+  @keyframes glowPulse{ 0%,100%{ opacity:.45;} 50%{ opacity:.8;} }
+  @keyframes modalPop{ 0%{ opacity:0; transform:translateY(14px) scale(.97);} 100%{ opacity:1; transform:translateY(0) scale(1);} }
+  @keyframes modalFade{ 0%{ opacity:0;} 100%{ opacity:1;} }
+
+  /* ---- hover states (ported from prototype style-hover) ---- */
+  .announce-cta:hover{ background:#ff7d1f; }
+  .cta-hero:hover{ background:#ff7d1f; transform:translateY(-2px); box-shadow:0 14px 40px rgba(255,107,0,.5); }
+  .carousel-nav:hover{ background:#FF6B00; color:#0A0A0A; }
+  [data-modal]:not([hidden]){ display:flex; }
+  .modal-open-btn:hover{ background:rgba(255,107,0,.16); transform:translateY(-1px); box-shadow:0 8px 26px rgba(255,107,0,.14); }
+  .modal-close-x:hover{ background:#FF6B00; color:#0A0A0A; border-color:#FF6B00; }
+  .modal-close-btn:hover{ background:rgba(255,255,255,.1); color:#fff; }
+  .cta-pricing:hover{ background:#ff7d1f; transform:translateY(-2px); }
+  .cta-final:hover{ background:#ff7d1f; transform:translateY(-2px); box-shadow:0 16px 48px rgba(255,107,0,.55); }
+  .footer-link:hover{ color:#FF6B00; }
+</style>
+</head>
+<body>
+
+<div style="background:#0A0A0A; color:#fff; font-family:'IBM Plex Sans Thai', system-ui, sans-serif; overflow-x:hidden;">
+
+  <!-- ===== STICKY ANNOUNCEMENT BAR ===== -->
+  <div style="position:sticky; top:0; z-index:50; background:linear-gradient(90deg,#1a0c00,#2a1200,#1a0c00); border-bottom:1px solid rgba(255,107,0,.35); backdrop-filter:blur(8px);">
+    <div style="max-width:1120px; margin:0 auto; padding:11px 22px; display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap;">
+      <span style="font-size:14.5px; color:#FFE2CC; line-height:1.4; text-align:center;">
+        <span style="font-size:15px;">🔥</span>
+        <strong style="color:#fff;">รอบ Early Access</strong> — ราคาพิเศษ
+        <strong style="color:#FF6B00;">1,550 บาท</strong>
+        <span style="color:#8a8a8a; text-decoration:line-through;">3,300</span>
+        · เหลือ <strong style="color:#FF6B00;" data-seats>30</strong> ที่นั่ง
+      </span>
+      <a href="https://forms.gle/kNyuBAptjf4UWG4M7" target="_blank" rel="noopener noreferrer" class="announce-cta" style="flex-shrink:0; font-size:13px; font-weight:600; color:#0A0A0A; background:#FF6B00; padding:6px 14px; border-radius:8px; text-decoration:none; white-space:nowrap; transition:background .2s;">จองเลย →</a>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section style="position:relative; padding:64px 22px 72px;">
+    <div style="position:absolute; top:-80px; left:50%; transform:translateX(-50%); width:780px; height:480px; background:radial-gradient(ellipse at center, rgba(255,107,0,.22), transparent 65%); filter:blur(20px); pointer-events:none; animation:glowPulse 6s ease-in-out infinite;"></div>
+    <div style="position:relative; max-width:1120px; margin:0 auto; display:flex; flex-wrap:wrap-reverse; align-items:center; gap:48px;">
+
+      <div style="flex:1 1 440px; min-width:300px;">
+        <div style="display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:600; letter-spacing:.5px; color:#FF6B00; background:rgba(255,107,0,.1); border:1px solid rgba(255,107,0,.3); padding:6px 13px; border-radius:999px; margin-bottom:24px;">
+          <span style="font-family:'IBM Plex Mono',monospace;">&lt;/&gt;</span> SHIP IT IN 3 HOURS
+        </div>
+        <h1 style="font-size:clamp(30px,4.6vw,50px); font-weight:700; line-height:1.34; letter-spacing:-.3px; margin:0 0 22px;">เขียนแอปเสร็จแล้ว...<br>
+          แต่มันยังติดอยู่ใน<span style="color: rgb(255, 107, 0);">เครื่องคุณคนเดียว</span>
+        </h1>
+        <p style="font-size:clamp(16px,2vw,19px); line-height:1.65; color:#B5B5B5; margin:0 0 32px; max-width:540px;">
+          เรียนรู้วิธีเอา vibe code ของคุณขึ้นเว็บจริง ให้ลูกค้าเปิดจากมือถือใช้งานได้ — ภายใน <strong style="color:#fff;">3 ชั่วโมง</strong> โดยไม่ต้องเป็นโปรแกรมเมอร์
+        </p>
+        <div style="display:flex; flex-direction:column; align-items:flex-start; gap:10px;">
+          <a href="https://forms.gle/kNyuBAptjf4UWG4M7" target="_blank" rel="noopener noreferrer" class="cta-hero" style="display:inline-flex; align-items:center; gap:10px; font-size:18px; font-weight:700; color:#0A0A0A; background:#FF6B00; padding:17px 30px; border-radius:13px; text-decoration:none; box-shadow:0 10px 34px rgba(255,107,0,.38); transition:all .2s;">จองสิทธิ์ Early Access 1,550 บาท →</a>
+          <span style="font-size:13.5px; color:#7d7d7d; padding-left:4px;">จากราคาเต็ม <span style="text-decoration:line-through;">3,300 บาท</span> · เข้าถึงตลอดชีพ</span>
+        </div>
+      </div>
+
+      <!-- Phone mockup -->
+      <div style="flex:1 1 320px; min-width:280px; display:flex; justify-content:center;">
+        <div style="position:relative; animation:floaty 6s ease-in-out infinite;">
+          <div style="position:absolute; top:30px; right:-14px; z-index:3; display:flex; align-items:center; gap:7px; background:#0d1f12; border:1px solid #1f6b3a; color:#3ee07a; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; padding:7px 12px; border-radius:9px; box-shadow:0 8px 24px rgba(0,0,0,.5);">
+            <span style="width:8px; height:8px; border-radius:50%; background:#3ee07a; animation:pulseDot 1.8s ease-in-out infinite;"></span> LIVE
+          </div>
+          <div style="width:286px; height:580px; background:#0c0c0c; border:1.5px solid #2a2a2a; border-radius:42px; padding:11px; box-shadow:0 30px 70px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04) inset;">
+            <div style="position:relative; width:100%; height:100%; background:#fff; border-radius:32px; overflow:hidden; display:flex; flex-direction:column;">
+              <div style="position:absolute; top:0; left:50%; transform:translateX(-50%); width:120px; height:24px; background:#0c0c0c; border-radius:0 0 16px 16px; z-index:4;"></div>
+              <!-- browser url bar -->
+              <div style="display:flex; align-items:center; gap:8px; padding:14px 14px 10px; background:#f4f4f5; border-bottom:1px solid #e4e4e7;">
+                <span style="width:9px; height:9px; border-radius:50%; background:#22c55e; flex-shrink:0;"></span>
+                <div style="flex:1; background:#fff; border:1px solid #e4e4e7; border-radius:7px; padding:6px 10px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:#3f3f46; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">🔒 yourapp.com</div>
+              </div>
+              <img src="./assets/ozue-example.png" alt="ตัวอย่างเว็บที่ deploy แล้ว" style="flex:1; width:100%; min-height:0; object-fit:cover; object-position:50% 0%;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== PROBLEM AGITATION ===== -->
+  <section style="padding:72px 22px; background:#0c0c0c; border-top:1px solid rgba(255,255,255,.05);">
+    <div style="max-width:980px; margin:0 auto;">
+      <p style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; letter-spacing:1.5px; color:#FF6B00; text-align:center; margin:0 0 14px;">// PROBLEM</p>
+      <h2 style="font-size:clamp(26px,3.5vw,38px); font-weight:700; text-align:center; line-height:1.3; margin:0 0 44px;">ถ้าคุณกำลังรู้สึกแบบนี้... <span style="color:#FF6B00;">เราเข้าใจ</span></h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;">
+        <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:24px; display:flex; gap:14px; align-items:flex-start;">
+          <span style="font-size:26px; line-height:1;">😩</span>
+          <p style="margin:0; font-size:16px; line-height:1.55; color:#D4D4D4;">"เขียนแอปเสร็จแล้ว แต่ไม่รู้จะเอาขึ้นให้คนอื่นใช้ยังไง"</p>
+        </div>
+        <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:24px; display:flex; gap:14px; align-items:flex-start;">
+          <span style="font-size:26px; line-height:1;">😰</span>
+          <p style="margin:0; font-size:16px; line-height:1.55; color:#D4D4D4;">"เห็นคำว่า server, Docker, deploy แล้วท้อ ไม่รู้จะเริ่มตรงไหน"</p>
+        </div>
+        <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:24px; display:flex; gap:14px; align-items:flex-start;">
+          <span style="font-size:26px; line-height:1;">🤔</span>
+          <p style="margin:0; font-size:16px; line-height:1.55; color:#D4D4D4;">"อยากปล่อยทดสอบตลาดเร็วๆ แต่ติดตรงเอาขึ้นระบบ"</p>
+        </div>
+        <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:24px; display:flex; gap:14px; align-items:flex-start;">
+          <span style="font-size:26px; line-height:1;">💸</span>
+          <p style="margin:0; font-size:16px; line-height:1.55; color:#D4D4D4;">"กลัวค่า server แพง กลัวกดอะไรผิดแล้วโดนชาร์จ"</p>
+        </div>
+        <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:24px; display:flex; gap:14px; align-items:flex-start; grid-column:1/-1; max-width:560px; margin:0 auto; width:100%;">
+          <span style="font-size:26px; line-height:1;">😶</span>
+          <p style="margin:0; font-size:16px; line-height:1.55; color:#D4D4D4;">"ไม่ได้เก่ง technical ขนาดนั้น เลยรู้สึกว่าเรื่องพวกนี้ไม่ใช่สำหรับเรา"</p>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:clamp(17px,2.2vw,21px); font-weight:600; line-height:1.5; color:#fff; margin:44px auto 0; max-width:680px;">ปัญหาไม่ใช่ว่าคุณเก่งไม่พอ — <span style="color:#FF6B00;">แค่ไม่มีใครพาทำทีละขั้น</span>แบบเข้าใจง่ายเท่านั้นเอง</p>
+    </div>
+  </section>
+
+  <!-- ===== SOLUTION ===== -->
+  <section style="padding:76px 22px;">
+    <div style="max-width:1080px; margin:0 auto;">
+      <p style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; letter-spacing:1.5px; color:#FF6B00; text-align:center; margin:0 0 14px;">// SOLUTION</p>
+      <h2 style="font-size:clamp(26px,3.5vw,38px); font-weight:700; text-align:center; line-height:1.3; margin:0 0 18px;">คอร์สนี้พาคุณทำจริง ทีละขั้น จนแอปขึ้น <span style="color:#FF6B00;">live</span></h2>
+      <p style="font-size:17px; line-height:1.7; color:#B5B5B5; text-align:center; max-width:720px; margin:0 auto 48px;">เราออกแบบคอร์สนี้สำหรับคนที่ "ไม่ได้เก่ง technical" โดยเฉพาะ ทุกขั้นตอนมีคำอธิบายแบบภาษาคน เปรียบเทียบกับเรื่องใกล้ตัว และมี template สำเร็จรูปให้ — คุณแค่ทำตามสูตร ไม่ต้องเขียนเองจากศูนย์</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px;">
+        <div style="background:linear-gradient(180deg,#161616,#111); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:28px;">
+          <div style="width:48px; height:48px; border-radius:12px; background:rgba(255,107,0,.12); border:1px solid rgba(255,107,0,.3); display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:18px;">⚡</div>
+          <h3 style="font-size:18px; font-weight:700; margin:0 0 8px;">เห็นผลตั้งแต่ชั่วโมงแรก</h3>
+          <p style="font-size:14.5px; line-height:1.6; color:#9a9a9a; margin:0;">ได้ลิงก์เว็บจริงส่งให้คนอื่นดูได้ภายใน 10 นาทีแรก</p>
+        </div>
+        <div style="background:linear-gradient(180deg,#161616,#111); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:28px;">
+          <div style="width:48px; height:48px; border-radius:12px; background:rgba(255,107,0,.12); border:1px solid rgba(255,107,0,.3); display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:18px;">🧩</div>
+          <h3 style="font-size:18px; font-weight:700; margin:0 0 8px;">แจก template พร้อมใช้</h3>
+          <p style="font-size:14.5px; line-height:1.6; color:#9a9a9a; margin:0;">ไม่ต้องเขียน config เอง แค่แก้ค่าแล้วรัน</p>
+        </div>
+        <div style="background:linear-gradient(180deg,#161616,#111); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:28px;">
+          <div style="width:48px; height:48px; border-radius:12px; background:rgba(255,107,0,.12); border:1px solid rgba(255,107,0,.3); display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:18px;">🛟</div>
+          <h3 style="font-size:18px; font-weight:700; margin:0 0 8px;">มีจุดแก้ปัญหาเตรียมไว้</h3>
+          <p style="font-size:14.5px; line-height:1.6; color:#9a9a9a; margin:0;">รวม error ที่มือใหม่เจอบ่อย พร้อมวิธีแก้</p>
+        </div>
+        <div style="background:linear-gradient(180deg,#161616,#111); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:28px;">
+          <div style="width:48px; height:48px; border-radius:12px; background:rgba(255,107,0,.12); border:1px solid rgba(255,107,0,.3); display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:18px;">🎥</div>
+          <h3 style="font-size:18px; font-weight:700; margin:0 0 8px;">วิดีโอดูซ้ำได้ไม่จำกัด</h3>
+          <p style="font-size:14.5px; line-height:1.6; color:#9a9a9a; margin:0;">เรียนตามจังหวะตัวเอง หยุด–ย้อน–ทำตามได้ ไม่มีกดดันเรื่องเวลา</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INSTRUCTOR / AUTHORITY ===== -->
+  <section style="padding:72px 22px; background:#0c0c0c; border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05);">
+    <div style="max-width:1000px; margin:0 auto;">
+      <p style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; letter-spacing:1.5px; color:#FF6B00; text-align:center; margin:0 0 36px;">// เรียนกับใคร</p>
+      <div style="display:flex; flex-wrap:wrap; gap:40px; align-items:center; justify-content:center;">
+        <div style="flex:0 0 auto; position:relative;">
+          <div style="position:absolute; inset:-2px; border-radius:22px; background:linear-gradient(135deg,#FF6B00,transparent); opacity:.5;"></div>
+          <div style="position:relative; width:300px; height:380px; border-radius:20px; overflow:hidden; background:#0d0d0d; border:1px solid rgba(255,255,255,.08);">
+            <img data-slide-img="0" src="./assets/profile1.jpg" alt="วิทยากร" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity .7s ease; opacity:1; z-index:2;">
+            <img data-slide-img="1" src="./assets/profile2.jpg" alt="วิทยากร" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity .7s ease; opacity:0; z-index:1;">
+            <img data-slide-img="2" src="./assets/profile3.jpg" alt="วิทยากร" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity .7s ease; opacity:0; z-index:1;">
+            <div style="position:absolute; left:0; right:0; bottom:0; z-index:5; padding:34px 16px 14px; background:linear-gradient(to top, rgba(0,0,0,.82), transparent); display:flex; align-items:flex-end; justify-content:space-between; gap:10px;">
+              <span data-slide-cap style="font-size:13px; font-weight:600; color:#fff; line-height:1.4;">🥇 รับรางวัล Super AI Engineer</span>
+            </div>
+            <button data-slide-prev aria-label="ก่อนหน้า" class="carousel-nav" style="position:absolute; z-index:6; top:50%; left:8px; transform:translateY(-50%); width:34px; height:34px; border-radius:50%; border:none; background:rgba(0,0,0,.45); color:#fff; font-size:17px; cursor:pointer; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px); transition:all .2s;">‹</button>
+            <button data-slide-next aria-label="ถัดไป" class="carousel-nav" style="position:absolute; z-index:6; top:50%; right:8px; transform:translateY(-50%); width:34px; height:34px; border-radius:50%; border:none; background:rgba(0,0,0,.45); color:#fff; font-size:17px; cursor:pointer; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px); transition:all .2s;">›</button>
+            <div data-slide-dots style="position:absolute; z-index:6; bottom:12px; left:0; right:0; display:flex; gap:7px; justify-content:center;"></div>
+          </div>
+        </div>
+        <div style="flex:1 1 360px; min-width:300px;">
+          <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,107,0,.12); border:1px solid rgba(255,107,0,.3); color:#FF6B00; font-size:13.5px; font-weight:600; padding:6px 13px; border-radius:999px; margin-bottom:16px;">🥇 Super AI Engineer — อันดับ 1 ของประเทศ</div>
+          <h2 style="font-size:28px; font-weight:700; margin:0 0 6px;">[ ชื่อวิทยากร ]</h2>
+          <p style="font-size:16.5px; line-height:1.7; color:#B5B5B5; margin:0 0 8px;">⚙️ ประสบการณ์ในวงการ AI และ Software มากกว่า 10 ปี — ผมเข้าใจดีว่าการเอาระบบขึ้นใช้จริงมันน่ากลัวแค่ไหนสำหรับคนที่ไม่ได้มาสายเทคนิคเต็มตัว คอร์สนี้คือสิ่งที่ผมอยากให้ตัวเองมีตอนเริ่มต้น</p>
+          <p style="font-size:13px; color:#666; margin:0;">* ปรับสำนวนให้เป็นเสียงคุณเอง · ใส่ที่มาของ "อันดับ 1" (ชื่อรายการ/ปี) เพื่อความน่าเชื่อถือ</p>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-top:40px;">
+        <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:26px 20px; text-align:center;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:40px; font-weight:600; color:#FF6B00; line-height:1;">10+</div>
+          <p style="font-size:14px; color:#9a9a9a; margin:12px 0 0;">ปีประสบการณ์ในวงการ AI &amp; Software</p>
+        </div>
+        <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:26px 20px; text-align:center;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:40px; font-weight:600; color:#FF6B00; line-height:1;">1,500+</div>
+          <p style="font-size:14px; color:#9a9a9a; margin:12px 0 0;">นักเรียนที่สอนมาแล้ว</p>
+        </div>
+        <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:26px 20px; text-align:center;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:40px; font-weight:600; color:#FF6B00; line-height:1;">#1</div>
+          <p style="font-size:14px; color:#9a9a9a; margin:12px 0 0;">Super AI Engineer อันดับ 1 ของประเทศ</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CURRICULUM ===== -->
+  <section style="padding:76px 22px;">
+    <div style="max-width:1000px; margin:0 auto;">
+      <p style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; letter-spacing:1.5px; color:#FF6B00; text-align:center; margin:0 0 14px;">// CURRICULUM</p>
+      <h2 style="font-size:clamp(26px,3.5vw,38px); font-weight:700; text-align:center; line-height:1.3; margin:0 0 48px;">ในคอร์สนี้คุณจะได้<span style="color:#FF6B00;">ลงมือทำ</span>อะไรบ้าง</h2>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:24px;">
+        <!-- PART 1 -->
+        <div style="background:linear-gradient(180deg,#1a1208,#111); border:1px solid rgba(255,107,0,.35); border-radius:20px; padding:30px; box-shadow:0 0 40px rgba(255,107,0,.06);">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; color:#0A0A0A; background:#FF6B00; padding:4px 10px; border-radius:6px;">PART 1 — CORE</span>
+            <span style="font-size:13px; color:#FF6B00; font-weight:600;">3 ชม.</span>
+          </div>
+          <h3 style="font-size:20px; font-weight:700; margin:10px 0 6px; line-height:1.4;">เอา idea ขึ้น live ด้วย Vercel + Supabase</h3>
+          <p style="font-size:13.5px; font-style:italic; color:#FF9d5c; margin:0 0 18px; line-height:1.5;">จบพาร์ทนี้: คุณมีเว็บ/แอปที่เปิดจากมือถือใครก็ได้ แล้วใช้งานได้จริง</p>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:13px;">
+            <li style="display:flex; gap:11px; font-size:14.5px; line-height:1.5; color:#D4D4D4;"><span style="color:#FF6B00; flex-shrink:0;">▸</span> เข้าใจภาพรวมระบบแบบภาษาคน: หน้าร้าน / หลังร้าน / คลังของ</li>
+            <li style="display:flex; gap:11px; font-size:14.5px; line-height:1.5; color:#D4D4D4;"><span style="color:#FF6B00; flex-shrink:0;">▸</span> เอาหน้าร้านขึ้น live ด้วย Vercel — ได้ URL จริง + HTTPS อัตโนมัติ</li>
+            <li style="display:flex; gap:11px; font-size:14.5px; line-height:1.5; color:#D4D4D4;"><span style="color:#FF6B00; flex-shrink:0;">▸</span> ต่อฐานข้อมูล + ระบบสมาชิกด้วย Supabase (มี template ให้)</li>
+            <li style="display:flex; gap:11px; font-size:14.5px; line-height:1.5; color:#D4D4D4;"><span style="color:#FF6B00; flex-shrink:0;">▸</span> เชื่อมทุกอย่างเข้าด้วยกัน + ตั้งค่าความปลอดภัยไม่ให้กุญแจหลุด</li>
+            <li style="display:flex; gap:11px; font-size:14.5px; line-height:1.5; color:#D4D4D4;"><span style="color:#FF6B00; flex-shrink:0;">▸</span> ใส่ชื่อเว็บ (domain) ของคุณเอง ให้ดูเป็นมืออาชีพ</li>
+          </ul>
+        </div>
+        <!-- PART 2 -->
+        <div style="background:#111; border:1px solid rgba(255,255,255,.1); border-radius:20px; padding:30px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px; flex-wrap:wrap;">
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; color:#fff; background:#2a2a2a; padding:4px 10px; border-radius:6px;">PART 2 — ADVANCED</span>
+            <span style="font-size:13px; color:#9a9a9a; font-weight:600;">3 ชม.</span>
+            <span style="font-size:11.5px; font-weight:600; color:#FF6B00; border:1px solid rgba(255,107,0,.4); padding:3px 8px; border-radius:6px;">โบนัส</span>
+          </div>
+          <h3 style="font-size:20px; font-weight:700; margin:10px 0 6px; line-height:1.4;">เมื่อแอปโตเกิน Vercel → เซิร์ฟเวอร์ของคุณเอง</h3>
+          <p style="font-size:13.5px; font-style:italic; color:#8a8a8a; margin:0 0 18px; line-height:1.5;">สำหรับคนที่ทดสอบตลาดผ่านแล้ว และอยากคุมระบบ + scale ได้เอง</p>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:13px;">
+            <li style="display:flex; gap:11px; font-size:14.5px; line-height:1.5; color:#D4D4D4;"><span style="color:#777; flex-shrink:0;">▸</span> Docker: แพ็กระบบให้รันที่ไหนก็ได้ (มี template ให้)</li>
+            <li style="display:flex; gap:11px; font-size:14.5px; line-height:1.5; color:#D4D4D4;"><span style="color:#777; flex-shrink:0;">▸</span> AWS EC2: เช่าเซิร์ฟเวอร์ของตัวเอง + รับเครดิตฟรี $100</li>
+            <li style="display:flex; gap:11px; font-size:14.5px; line-height:1.5; color:#D4D4D4;"><span style="color:#777; flex-shrink:0;">▸</span> Deploy ขึ้นเซิร์ฟเวอร์จริง + ต่อ domain + HTTPS เต็มรูปแบบ</li>
+          </ul>
+          <p style="font-size:13.5px; line-height:1.6; color:#9a9a9a; margin:18px 0 0; padding-top:16px; border-top:1px solid rgba(255,255,255,.07);">Part 2 คือของแถมมูลค่าสูงที่ไม่บีบให้คุณทำตอนยังไม่พร้อม — เริ่มจาก Core ให้แอป live ก่อน แล้วค่อยมาต่อเมื่อพร้อม scale</p>
+        </div>
+      </div>
+
+      <!-- full course details trigger -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:38px;">
+        <button data-modal-open class="modal-open-btn" style="display:inline-flex; align-items:center; gap:11px; font-family:inherit; font-size:15.5px; font-weight:600; color:#FF6B00; background:rgba(255,107,0,.08); border:1px solid rgba(255,107,0,.35); padding:15px 28px; border-radius:13px; cursor:pointer; transition:all .2s;">
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:13px;">[ + ]</span>
+          <span>ดูรายละเอียดคอร์สแบบเต็ม — ทุกโมดูล</span>
+        </button>
+        <span style="font-size:12.5px; color:#777;">10 โมดูล · เนื้อหาเต็ม 6 ชม. · พร้อมผลลัพธ์ทุกขั้น</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CURRICULUM MODAL (populated by JS) ===== -->
+  <div data-modal hidden style="position:fixed; inset:0; z-index:200; background:rgba(4,4,4,.82); backdrop-filter:blur(7px); align-items:center; justify-content:center; padding:26px 16px; animation:modalFade .22s ease;">
+    <div data-modal-panel style="position:relative; width:100%; max-width:840px; max-height:calc(100vh - 52px); display:flex; flex-direction:column; background:#0c0c0c; border:1px solid rgba(255,107,0,.3); border-radius:22px; box-shadow:0 30px 90px rgba(0,0,0,.7), 0 0 60px rgba(255,107,0,.07); overflow:hidden; animation:modalPop .3s cubic-bezier(.2,.85,.3,1);">
+      <div style="flex-shrink:0; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 24px; background:linear-gradient(180deg,#150d04,#0c0c0c); border-bottom:1px solid rgba(255,107,0,.18);">
+        <div style="display:flex; align-items:center; gap:12px; min-width:0;">
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; letter-spacing:1px; color:#FF6B00; flex-shrink:0;">// CURRICULUM</span>
+          <h3 style="font-size:clamp(15px,2.4vw,19px); font-weight:700; margin:0; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">รายละเอียดคอร์สแบบเต็ม</h3>
+        </div>
+        <button data-modal-close aria-label="ปิด" class="modal-close-x" style="flex-shrink:0; width:38px; height:38px; border-radius:11px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); color:#cfcfcf; font-size:17px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s;">✕</button>
+      </div>
+      <div style="flex:1; min-height:0; overflow-y:auto; padding:30px 26px 34px;">
+        <div data-modal-body style="display:flex; flex-direction:column; gap:48px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BEFORE / AFTER ===== -->
+  <section style="padding:72px 22px; background:#0c0c0c; border-top:1px solid rgba(255,255,255,.05);">
+    <div style="max-width:960px; margin:0 auto;">
+      <h2 style="font-size:clamp(24px,3.2vw,34px); font-weight:700; text-align:center; line-height:1.3; margin:0 0 44px;">จากค้างในเครื่อง → <span style="color:#FF6B00;">ขึ้น live ให้คนใช้จริง</span></h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px;">
+        <div style="background:#0f0f0f; border:1px solid rgba(255,255,255,.07); border-radius:18px; padding:28px;">
+          <div style="font-size:13px; font-weight:600; letter-spacing:1px; color:#777; margin-bottom:18px; text-transform:uppercase;">ก่อนเรียน</div>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:15px;">
+            <li style="display:flex; gap:11px; font-size:15px; line-height:1.5; color:#888;"><span style="color:#555; flex-shrink:0;">✕</span> แอปติดอยู่ในเครื่องตัวเองคนเดียว</li>
+            <li style="display:flex; gap:11px; font-size:15px; line-height:1.5; color:#888;"><span style="color:#555; flex-shrink:0;">✕</span> อยากให้คนลองใช้ แต่ส่งให้ไม่ได้</li>
+            <li style="display:flex; gap:11px; font-size:15px; line-height:1.5; color:#888;"><span style="color:#555; flex-shrink:0;">✕</span> เห็นศัพท์ technical แล้วท้อ</li>
+            <li style="display:flex; gap:11px; font-size:15px; line-height:1.5; color:#888;"><span style="color:#555; flex-shrink:0;">✕</span> idea ค้างอยู่ในหัว ไม่ได้ทดสอบจริงสักที</li>
+          </ul>
+        </div>
+        <div style="background:linear-gradient(180deg,#1a1208,#111); border:1px solid rgba(255,107,0,.35); border-radius:18px; padding:28px; box-shadow:0 0 40px rgba(255,107,0,.07);">
+          <div style="font-size:13px; font-weight:600; letter-spacing:1px; color:#FF6B00; margin-bottom:18px; text-transform:uppercase;">หลังเรียน</div>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:15px;">
+            <li style="display:flex; gap:11px; font-size:15px; line-height:1.5; color:#EAEAEA;"><span style="color:#FF6B00; flex-shrink:0;">✓</span> มีเว็บ live บนชื่อโดเมนตัวเอง ส่งลิงก์ให้ใครก็ได้</li>
+            <li style="display:flex; gap:11px; font-size:15px; line-height:1.5; color:#EAEAEA;"><span style="color:#FF6B00; flex-shrink:0;">✓</span> ลูกค้า/ทีม เปิดจากมือถือใช้งานได้จริง</li>
+            <li style="display:flex; gap:11px; font-size:15px; line-height:1.5; color:#EAEAEA;"><span style="color:#FF6B00; flex-shrink:0;">✓</span> เข้าใจว่าระบบทำงานยังไง deploy เองเป็น</li>
+            <li style="display:flex; gap:11px; font-size:15px; line-height:1.5; color:#EAEAEA;"><span style="color:#FF6B00; flex-shrink:0;">✓</span> พร้อมทดสอบตลาดและเก็บ feedback จริงได้ทันที</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BONUS STACK ===== -->
+  <section style="padding:76px 22px;">
+    <div style="max-width:880px; margin:0 auto;">
+      <p style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; letter-spacing:1.5px; color:#FF6B00; text-align:center; margin:0 0 14px;">// BONUS</p>
+      <h2 style="font-size:clamp(24px,3.2vw,34px); font-weight:700; text-align:center; line-height:1.3; margin:0 0 40px;">จอง Early Access วันนี้ <span style="color:#FF6B00;">รับของแถมครบทุกอย่าง</span></h2>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:20px 22px; display:flex; align-items:center; gap:16px;">
+          <span style="font-size:24px; flex-shrink:0;">🎁</span>
+          <div style="flex:1; min-width:0;"><div style="font-size:16px; font-weight:600;">คอร์สเต็ม สอนใช้งาน Claude Code สำหรับสร้าง product</div><div style="font-size:13.5px; color:#8a8a8a; margin-top:3px;">เนื้อหา 3 ชั่วโมงเต็ม สร้าง product จริงตั้งแต่ต้นจนจบ</div></div>
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:600; color:#FF6B00; white-space:nowrap;">1,499.-</span>
+        </div>
+        <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:20px 22px; display:flex; align-items:center; gap:16px;">
+          <span style="font-size:24px; flex-shrink:0;">🎁</span>
+          <div style="flex:1; min-width:0;"><div style="font-size:16px; font-weight:600;">Script &amp; เครื่องมือช่วย Monitor ระบบ</div><div style="font-size:13.5px; color:#8a8a8a; margin-top:3px;">อำนวยความสะดวกในการ Monitor ระบบเราให้ง่ายขึ้น</div></div>
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:600; color:#FF6B00; white-space:nowrap;">2,500.-</span>
+        </div>
+        <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:20px 22px; display:flex; align-items:center; gap:16px;">
+          <span style="font-size:24px; flex-shrink:0;">🎁</span>
+          <div style="flex:1; min-width:0;"><div style="font-size:16px; font-weight:600;">ดูได้ตลอดชีพ + ได้โมดูลใหม่ในอนาคตฟรี</div><div style="font-size:13.5px; color:#8a8a8a; margin-top:3px;">ดูซ้ำได้ไม่จำกัด ได้คอนเทนต์ที่อัปเดตในอนาคตด้วย</div></div>
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:600; color:#FF6B00; white-space:nowrap;">ฟรี</span>
+        </div>
+      </div>
+      <div style="margin-top:24px; background:linear-gradient(90deg,rgba(255,107,0,.12),rgba(255,107,0,.04)); border:1px solid rgba(255,107,0,.3); border-radius:14px; padding:22px; text-align:center;">
+        <p style="margin:0; font-size:16px; line-height:1.6; color:#EAEAEA;">รวมมูลค่าของแถม <span style="text-decoration:line-through; color:#8a8a8a;">3,999 บาท</span> — วันนี้คุณจ่ายเพียง <strong style="color:#FF6B00; font-size:20px;">1,550 บาท</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING / OFFER ===== -->
+  <section id="pricing" style="padding:80px 22px; background:#0c0c0c; border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); position:relative;">
+    <div style="position:absolute; top:0; left:50%; transform:translateX(-50%); width:600px; height:300px; background:radial-gradient(ellipse at center, rgba(255,107,0,.14), transparent 70%); pointer-events:none;"></div>
+    <div style="position:relative; max-width:560px; margin:0 auto; text-align:center;">
+      <p style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; letter-spacing:1.5px; color:#FF6B00; margin:0 0 14px;">// OFFER</p>
+      <h2 style="font-size:clamp(26px,3.5vw,36px); font-weight:700; line-height:1.3; margin:0 0 30px;">ราคา Early Access — เฉพาะรอบนี้เท่านั้น</h2>
+
+      <div style="background:#111; border:1.5px solid rgba(255,107,0,.4); border-radius:24px; padding:38px 30px; box-shadow:0 20px 60px rgba(0,0,0,.5), 0 0 50px rgba(255,107,0,.08);">
+        <div style="display:inline-block; font-size:13px; font-weight:600; color:#FF6B00; background:rgba(255,107,0,.12); border:1px solid rgba(255,107,0,.3); padding:6px 14px; border-radius:999px; margin-bottom:22px;">🔥 EARLY ACCESS</div>
+        <div style="display:flex; align-items:baseline; justify-content:center; gap:12px; margin-bottom:6px;">
+          <span style="font-size:22px; color:#777; text-decoration:line-through;">3,300</span>
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:60px; font-weight:700; color:#fff; line-height:1;">1,550</span>
+          <span style="font-size:20px; color:#B5B5B5; align-self:flex-end; padding-bottom:8px;">บาท</span>
+        </div>
+        <p style="font-size:14px; color:#888; margin:0 0 24px;">จ่ายครั้งเดียว · เข้าถึงตลอดชีพ</p>
+
+        <p style="font-size:14.5px; line-height:1.65; color:#B5B5B5; text-align:left; margin:0 0 24px; padding:18px; background:#0d0d0d; border-radius:12px; border:1px solid rgba(255,255,255,.06);">
+          <strong style="color:#fff;">ทำไมถูกขนาดนี้?</strong> เพราะคุณคือกลุ่ม Early Access — จองตอนนี้ได้ราคาพิเศษ และได้สิทธิ์เข้าดูก่อนใครทันทีที่คอร์สพร้อมปล่อย พร้อมช่วยเราด้วย feedback เพื่อทำให้คอร์สดีที่สุด หลังปิดรอบ Early Access ราคาจะกลับเป็น 3,300 บาทเต็ม
+        </p>
+
+        <div style="display:flex; align-items:center; justify-content:center; gap:9px; font-size:14px; color:#EAEAEA; margin-bottom:22px; padding:11px; background:rgba(255,107,0,.06); border-radius:10px;">
+          <span>🎬</span> วิดีโอพร้อมให้เข้าดู: <strong style="color:#FF6B00;">[ ใส่วันที่จริง ]</strong>
+        </div>
+
+        <a href="https://forms.gle/kNyuBAptjf4UWG4M7" target="_blank" rel="noopener noreferrer" class="cta-pricing" style="display:block; font-size:18px; font-weight:700; color:#0A0A0A; background:#FF6B00; padding:18px; border-radius:13px; text-decoration:none; box-shadow:0 10px 30px rgba(255,107,0,.4); transition:all .2s;">จองสิทธิ์ Early Access ตอนนี้ →</a>
+
+        <div style="margin-top:18px; display:flex; flex-direction:column; align-items:center; gap:10px;">
+          <div style="display:flex; gap:8px; align-items:center; font-size:12.5px; color:#777; flex-wrap:wrap; justify-content:center;">
+            <span style="background:#1a1a1a; border:1px solid #2a2a2a; padding:4px 9px; border-radius:6px;">💳 บัตรเครดิต</span>
+            <span style="background:#1a1a1a; border:1px solid #2a2a2a; padding:4px 9px; border-radius:6px;">📱 PromptPay</span>
+            <span style="background:#1a1a1a; border:1px solid #2a2a2a; padding:4px 9px; border-radius:6px;">🏦 โอนผ่านธนาคาร</span>
+          </div>
+          <p style="margin:0; font-size:13.5px; color:#FF6B00; font-weight:600;">เหลือ <span data-seats>30</span> ที่นั่ง</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FIT / NOT FIT ===== -->
+  <section style="padding:76px 22px;">
+    <div style="max-width:960px; margin:0 auto;">
+      <h2 style="font-size:clamp(24px,3.2vw,34px); font-weight:700; text-align:center; line-height:1.3; margin:0 0 44px;">คอร์สนี้<span style="color:#FF6B00;">เหมาะ</span> / ไม่เหมาะกับใคร</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px;">
+        <div style="background:#111; border:1px solid rgba(62,224,122,.22); border-radius:18px; padding:28px;">
+          <div style="font-size:15px; font-weight:700; color:#3ee07a; margin-bottom:18px; display:flex; align-items:center; gap:8px;">✅ เหมาะกับ</div>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;">
+            <li style="font-size:15px; line-height:1.55; color:#D4D4D4;">คนเขียนแอป/เว็บได้ (หรือใช้ AI ช่วยเขียน) แต่ deploy ไม่เป็น</li>
+            <li style="font-size:15px; line-height:1.55; color:#D4D4D4;">เจ้าของกิจการอยากทำเครื่องมือให้ทีมใช้</li>
+            <li style="font-size:15px; line-height:1.55; color:#D4D4D4;">คนมี idea อยากปล่อยทดสอบตลาดเร็วๆ</li>
+          </ul>
+        </div>
+        <div style="background:#111; border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:28px;">
+          <div style="font-size:15px; font-weight:700; color:#888; margin-bottom:18px; display:flex; align-items:center; gap:8px;">❌ ยังไม่เหมาะกับ</div>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;">
+            <li style="font-size:15px; line-height:1.55; color:#888;">คนยังเขียนโค้ด/ใช้ AI สร้างแอปไม่ได้เลย</li>
+            <li style="font-size:15px; line-height:1.55; color:#888;">คนที่ต้องการระบบ enterprise scale ใหญ่ตั้งแต่วันแรก</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Guarantee -->
+      <div style="margin-top:32px; display:flex; align-items:center; gap:20px; flex-wrap:wrap; justify-content:center; background:linear-gradient(90deg,rgba(255,107,0,.08),transparent); border:1px solid rgba(255,107,0,.25); border-radius:18px; padding:26px 30px;">
+        <div style="width:62px; height:62px; border-radius:50%; background:rgba(255,107,0,.12); border:1.5px solid rgba(255,107,0,.4); display:flex; align-items:center; justify-content:center; font-size:30px; flex-shrink:0;">🛡️</div>
+        <div style="flex:1; min-width:240px;">
+          <div style="font-size:18px; font-weight:700; margin-bottom:4px;">รับประกันคืนเงิน 7 วัน</div>
+          <p style="font-size:14.5px; line-height:1.6; color:#9a9a9a; margin:0;">ทำตามคอร์สแล้วแอปยังไม่ขึ้น live — คืนเงินเต็มจำนวน <span style="color:#666;">(ใส่ก็ต่อเมื่อให้จริงได้)</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOCIAL PROOF ===== -->
+  <section style="padding:60px 22px; background:#0c0c0c; border-top:1px solid rgba(255,255,255,.05);">
+    <div style="max-width:880px; margin:0 auto; text-align:center;">
+      <p style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; letter-spacing:1.5px; color:#FF6B00; margin:0 0 14px;">// REVIEWS</p>
+      <h2 style="font-size:clamp(22px,3vw,30px); font-weight:700; line-height:1.3; margin:0 0 10px;">เสียงจริงจากผู้เรียนที่ผ่านมา</h2>
+      <p style="font-size:14.5px; color:#9a9a9a; margin:0 0 36px; line-height:1.6;">ความเห็นจากแบบประเมินผู้เข้าอบรมในคอร์สที่ผ่านมาของผู้สอน</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; align-items:start; text-align:left;">
+
+        <!-- Proof screenshot -->
+        <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
+          <div style="position:relative; width:100%; max-width:330px; border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.1); box-shadow:0 20px 50px rgba(0,0,0,.5); background:#fff;">
+            <img src="./assets/review1.jpg" alt="แบบประเมินจากผู้เรียน" style="display:block; width:100%; height:auto;">
+          </div>
+          <span style="font-size:12.5px; color:#666; display:flex; align-items:center; gap:6px;">📋 ภาพจริงจากแบบประเมินผู้เข้าอบรม</span>
+        </div>
+
+        <!-- Pulled quotes -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:22px;">
+            <div style="color:#FF6B00; font-size:14px; letter-spacing:2px; margin-bottom:10px;">★★★★★</div>
+            <p style="margin:0 0 12px; font-size:15px; line-height:1.6; color:#E4E4E4;">"วิทยากร วัตถุประสงค์การสอนที่ชัดเจน ตามรายละเอียด ไม่เร็ว ไม่ช้าจนเกินไปครับ"</p>
+            <div style="font-size:13px; color:#777;">— ผู้เข้าอบรมคอร์สที่ผ่านมา</div>
+          </div>
+          <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:22px;">
+            <div style="color:#FF6B00; font-size:14px; letter-spacing:2px; margin-bottom:10px;">★★★★★</div>
+            <p style="margin:0 0 12px; font-size:15px; line-height:1.6; color:#E4E4E4;">"สามารถอธิบาย และเทคนิคการใช้งาน AI ได้อย่างดี — ดูเหมือนจะเอาไปใช้ได้จริง"</p>
+            <div style="font-size:13px; color:#777;">— ผู้เข้าอบรมคอร์สที่ผ่านมา</div>
+          </div>
+          <div style="background:#141414; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:22px;">
+            <div style="color:#FF6B00; font-size:14px; letter-spacing:2px; margin-bottom:10px;">★★★★★</div>
+            <p style="margin:0 0 12px; font-size:15px; line-height:1.6; color:#E4E4E4;">"ได้รับความรู้เน้นๆ สามารถนำไปใช้งานได้จริง มีประโยชน์มากๆ วิทยากรแนะนำและแก้ไขปัญหาได้ดีมาก"</p>
+            <div style="font-size:13px; color:#777;">— ผู้เข้าอบรมคอร์สที่ผ่านมา</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ (populated by JS) ===== -->
+  <section style="padding:76px 22px;">
+    <div style="max-width:760px; margin:0 auto;">
+      <p style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; letter-spacing:1.5px; color:#FF6B00; text-align:center; margin:0 0 14px;">// FAQ</p>
+      <h2 style="font-size:clamp(24px,3.2vw,34px); font-weight:700; text-align:center; line-height:1.3; margin:0 0 40px;">คำถามที่พบบ่อย</h2>
+      <div data-faq style="display:flex; flex-direction:column; gap:12px;"></div>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section style="position:relative; padding:84px 22px;">
+    <div style="position:absolute; inset:0; background:radial-gradient(ellipse at center, rgba(255,107,0,.16), transparent 70%); pointer-events:none;"></div>
+    <div style="position:relative; max-width:680px; margin:0 auto; text-align:center;">
+      <h2 style="font-size:clamp(28px,4vw,44px); font-weight:700; line-height:1.25; letter-spacing:-.5px; margin:0 0 18px;">พร้อมเอา idea ของคุณ<br>ขึ้น <span style="color:#FF6B00;">live</span> แล้วหรือยัง?</h2>
+      <p style="font-size:17px; line-height:1.6; color:#B5B5B5; margin:0 0 32px;">อย่าให้แอปดีๆ ติดอยู่ในเครื่องคุณคนเดียวอีกต่อไป — จอง Early Access วันนี้ในราคา 1,550 บาท</p>
+      <a href="https://forms.gle/kNyuBAptjf4UWG4M7" target="_blank" rel="noopener noreferrer" class="cta-final" style="display:inline-flex; align-items:center; gap:10px; font-size:19px; font-weight:700; color:#0A0A0A; background:#FF6B00; padding:19px 34px; border-radius:14px; text-decoration:none; box-shadow:0 12px 40px rgba(255,107,0,.42); transition:all .2s;">จองสิทธิ์ Early Access 1,550 บาท →</a>
+      <p style="margin:14px 0 0; font-size:13.5px; color:#777;">จากราคาเต็ม <span style="text-decoration:line-through;">3,300 บาท</span> · เหลือ <span data-seats>30</span> ที่นั่ง</p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="padding:40px 22px; border-top:1px solid rgba(255,255,255,.07); background:#080808;">
+    <div style="max-width:1000px; margin:0 auto; display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:600; color:#FF6B00;">&lt;/&gt;</span>
+        <span style="font-size:14px; font-weight:600; color:#ccc;">Ship It in 3 Hours</span>
+      </div>
+      <div style="font-size:13px; color:#666;">© 2026 Shift it 3 Hour · ทุกสิทธิ์สงวนไว้</div>
+      <div style="display:flex; gap:18px; font-size:13px;">
+        <a href="#" class="footer-link" style="color:#888; text-decoration:none; transition:color .2s;">ติดต่อ</a>
+        <a href="#" class="footer-link" style="color:#888; text-decoration:none; transition:color .2s;">เงื่อนไข</a>
+      </div>
+    </div>
+    <p style="max-width:1000px; margin:18px auto 0; font-size:11.5px; color:#555; line-height:1.5;">* คอร์สนี้เป็นวิดีโอบันทึกล่วงหน้า (on-demand) ไม่ใช่คลาสสด · เปิดจองล่วงหน้า (preregister) เข้าดูได้ตามวันที่ระบุ · ผลลัพธ์ขึ้นอยู่กับการลงมือทำของผู้เรียนแต่ละคน</p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  // ---- config / dynamic prop (matches DC default) ----
+  var SEATS = 30;
+  document.querySelectorAll('[data-seats]').forEach(function (el) { el.textContent = SEATS; });
+
+  var esc = function (s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  };
+
+  // ====================== INSTRUCTOR CAROUSEL ======================
+  var profiles = [
+    { cap: '🥇 รับรางวัล Super AI Engineer' },
+    { cap: '🎤 บนเวทีสอน — ลงมือทำจริง' },
+    { cap: '👥 คลาสและชุมชนผู้เรียน' }
+  ];
+  var slide = 0;
+  var imgs = Array.prototype.slice.call(document.querySelectorAll('[data-slide-img]'));
+  var capEl = document.querySelector('[data-slide-cap]');
+  var dotsEl = document.querySelector('[data-slide-dots]');
+
+  var dotBtns = profiles.map(function (p, i) {
+    var b = document.createElement('button');
+    b.setAttribute('aria-label', 'ไปสไลด์');
+    b.style.cssText = 'width:8px; height:8px; padding:0; border-radius:50%; border:none; cursor:pointer; transition:all .3s;';
+    b.addEventListener('click', function () { go(i); });
+    dotsEl.appendChild(b);
+    return b;
+  });
+
+  function renderSlide() {
+    imgs.forEach(function (img, i) {
+      img.style.opacity = (i === slide) ? '1' : '0';
+      img.style.zIndex = (i === slide) ? '2' : '1';
+    });
+    capEl.textContent = profiles[slide].cap;
+    dotBtns.forEach(function (b, i) {
+      b.style.background = (i === slide) ? '#FF6B00' : 'rgba(255,255,255,.3)';
+      b.style.transform = 'scale(' + (i === slide ? 1.3 : 1) + ')';
+    });
+  }
+  function go(i) { slide = (i + profiles.length) % profiles.length; renderSlide(); }
+  function next() { go(slide + 1); }
+  function prev() { go(slide - 1); }
+
+  document.querySelector('[data-slide-next]').addEventListener('click', next);
+  document.querySelector('[data-slide-prev]').addEventListener('click', prev);
+  renderSlide();
+  setInterval(next, 4500);
+
+  // ====================== FAQ ACCORDION ======================
+  var faqData = [
+    { q: 'คอร์สนี้เป็นวิดีโออัดไว้ หรือเรียนสด?', a: 'เป็นวิดีโออัดไว้ล่วงหน้า (on-demand) เรียนเมื่อไหร่ก็ได้ ดูซ้ำได้ไม่จำกัด ไม่ต้องเข้าตามเวลา' },
+    { q: 'จองล่วงหน้าแล้วได้เข้าดูเมื่อไหร่?', a: 'ได้สิทธิ์เข้าดูก่อนใครทันทีที่คอร์สพร้อมปล่อย วันที่ 30/6/2026' },
+    { q: 'ต้องเขียนโปรแกรมเก่งไหมถึงจะเรียนได้?', a: 'ไม่จำเป็น คอร์สออกแบบสำหรับคนไม่เก่ง tech ทุกขั้นมี template และคำอธิบายภาษาคน' },
+    { q: 'วิดีโอยาวเท่าไหร่ / ใช้เวลาทำตามนานแค่ไหน?', a: 'Core ราว 3 ชม. ทำตามไปพร้อมวิดีโอได้ (มี template ช่วยให้เร็วขึ้น) · Advanced อีกราว 3 ชม. ทำเมื่อพร้อม' },
+    { q: 'ต้องเสียค่า server เพิ่มไหม?', a: 'ส่วนใหญ่ใช้ของฟรีได้ (Vercel/Supabase free tier + เครดิต AWS ฟรี $100) สอนวิธีคุมค่าใช้จ่ายให้ด้วย' },
+    { q: 'เข้าถึงคอร์สได้นานแค่ไหน?', a: 'เข้าถึงตลอดชีพ + ได้โมดูลใหม่ในอนาคตฟรี' },
+    { q: 'ถ้าติดปัญหาระหว่างทำตาม ถามใครได้?', a: 'อาจจะไม่สามารถตอบได้ตลอด แต่สามารถทักถาม ใน IG ได้เลยครับ จะรีบตอบกลับไวที่สุด' },
+    { q: 'จ่ายเงินยังไง?', a: 'PromptPay และโอนผ่านธนาคาร ครับ' }
+  ];
+  var openFaq = 0;
+  var faqWrap = document.querySelector('[data-faq]');
+
+  function renderFaq() {
+    faqWrap.innerHTML = faqData.map(function (f, i) {
+      var open = openFaq === i;
+      var sign = open ? '−' : '+';
+      return '' +
+        '<div style="background:#111; border:1px solid rgba(255,255,255,.08); border-radius:14px; overflow:hidden;">' +
+          '<button data-faq-toggle="' + i + '" style="width:100%; background:none; border:none; color:#fff; font-family:inherit; text-align:left; padding:20px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; cursor:pointer; font-size:16px; font-weight:600; line-height:1.45;">' +
+            '<span>' + esc(f.q) + '</span>' +
+            '<span style="flex-shrink:0; width:26px; height:26px; border-radius:50%; background:rgba(255,107,0,.12); color:#FF6B00; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:600;">' + sign + '</span>' +
+          '</button>' +
+          (open ? '<div style="padding:0 22px 20px; font-size:14.5px; line-height:1.7; color:#A5A5A5;">' + esc(f.a) + '</div>' : '') +
+        '</div>';
+    }).join('');
+    faqWrap.querySelectorAll('[data-faq-toggle]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var i = parseInt(btn.getAttribute('data-faq-toggle'), 10);
+        openFaq = (openFaq === i) ? -1 : i;
+        renderFaq();
+      });
+    });
+  }
+  renderFaq();
+
+  // ====================== CURRICULUM MODAL ======================
+  var part1 = [
+    { title: '🎬 เริ่มต้น — เห็นภาพรวมใน 15 นาที', dur: '~15 นาที', intro: '', bullets: [
+      'เข้าใจว่าเว็บหนึ่งตัวประกอบด้วยอะไร แบบภาษาคน: หน้าร้าน / หลังร้าน / คลังของ',
+      'เตรียมของให้พร้อมก่อนลงมือ (ส่วนใหญ่ใช้ของฟรี)'
+    ], result: '', connector: 'เริ่มจากส่วนที่เห็นผลเร็วและฟรีที่สุดก่อน — หน้าร้านของคุณ' },
+    { title: 'Module 1 · เอาหน้าร้านขึ้น live ด้วย Vercel', dur: '~40 นาที', intro: 'เอาเว็บขึ้นออนไลน์จริง ได้ลิงก์ที่ส่งให้ใครก็เปิดดูได้', bullets: [
+      'เชื่อม GitHub แล้วกด deploy — เว็บขึ้นจริง พร้อม HTTPS อัตโนมัติ',
+      'อ่าน log เป็น เวลาติดปัญหาจะได้แก้เองได้ ไม่ต้องตื่นตระหนก',
+      'รู้ชัดว่า Vercel ทำอะไรได้/ไม่ได้ เพื่อวางระบบให้ถูกตั้งแต่แรก'
+    ], result: 'ได้ลิงก์เว็บ live ตัวแรกของคุณ', connector: 'ตอนนี้หน้าร้านสวยแล้ว แต่มันยังจำอะไรไม่ได้ — ถึงเวลาเพิ่ม "คลังของ"' },
+    { title: 'Module 2 · ฐานข้อมูล + ระบบสมาชิกด้วย Supabase', dur: '~50 นาที', intro: 'ให้เว็บเก็บข้อมูลและรับสมัครสมาชิกได้จริง', bullets: [
+      'สร้างฐานข้อมูล + ออกแบบตารางง่ายๆ (คิดเหมือนทำตารางใน Excel)',
+      'เปิดระบบสมัครสมาชิก / เข้าสู่ระบบ ได้ในไม่กี่คลิก',
+      'ใช้ template ฐานข้อมูลสำเร็จรูปที่แจกให้ — แค่แก้ตาม ไม่ต้องสร้างจากศูนย์'
+    ], result: 'เว็บมีคลังข้อมูล + ระบบสมาชิกพร้อมใช้', connector: 'มีหน้าร้านและคลังของแล้ว แต่สองอย่างนี้ยังไม่รู้จักกัน — ขั้นต่อไปคือต่อให้คุยกันอย่างปลอดภัย' },
+    { title: 'Module 3 · เชื่อมระบบเข้าด้วยกัน + ตั้งค่าความปลอดภัย', dur: '~40 นาที', intro: 'ทำให้หน้าร้านดึงและบันทึกข้อมูลจริงได้ โดยข้อมูลไม่รั่ว', bullets: [
+      'เชื่อมหน้าเว็บเข้ากับฐานข้อมูล ให้ดึง/บันทึกข้อมูลได้จริง',
+      'เก็บ "กุญแจลับ" ของระบบให้ปลอดภัย ไม่ให้หลุดไปกับโค้ด (จุดที่มือใหม่พลาดบ่อยที่สุด)',
+      'ทดสอบทั้ง flow: สมัคร → เข้าสู่ระบบ → บันทึกข้อมูล → เห็นผลจริง'
+    ], result: 'ระบบทำงานครบวงจร ใช้งานได้จริงตั้งแต่ต้นจนจบ', connector: 'ระบบครบแล้ว เหลือทำให้ดู "น่าเชื่อถือเหมือนของจริง"' },
+    { title: 'Module 4 · ใส่ชื่อเว็บของคุณเอง (Custom Domain)', dur: '~25 นาที', intro: 'เปลี่ยนจากลิงก์ยาวๆ เป็นชื่อเว็บของตัวเองที่ดูโปร', bullets: [
+      'ซื้อและผูกโดเมนกับเว็บ (ระบบจัดการ HTTPS ให้อัตโนมัติ)',
+      'เช็กให้เปิดบนมือถือสวย โหลดไว พร้อมโชว์จริง'
+    ], result: 'ระบบทั้งหมด live บนชื่อเว็บของคุณเอง', connector: '' },
+    { title: '🎁 ปิดท้าย Core — เก็บงานให้พร้อม launch', dur: '~10 นาที', intro: '', bullets: [
+      'Checklist ก่อนเปิดตัว (พิมพ์ออกมาเช็กตามได้)',
+      'รวม 5 Error ที่มือใหม่เจอบ่อย พร้อมวิธีแก้ทีละขั้น'
+    ], result: '', connector: '' }
+  ];
+
+  var part2 = [
+    { title: '🎬 เริ่มต้น — เห็นปลายทางก่อน', dur: '~15 นาที', intro: '', bullets: [
+      'เข้าใจว่าทำไม Docker + AWS ถึงตอบโจทย์ตรงที่ Vercel ทำไม่ได้',
+      'เตรียมโค้ดหลังร้านจาก Part 1 ให้พร้อมย้าย'
+    ], result: '', connector: 'ก่อนเช่าเซิร์ฟเวอร์ ต้อง "แพ็กของ" ให้พร้อมย้ายก่อน — นั่นคือหน้าที่ของ Docker' },
+    { title: 'Module 1 · แพ็กระบบให้รันที่ไหนก็ได้ด้วย Docker', dur: '~45 นาที', intro: 'ห่อระบบทั้งหมดเป็น "กล่อง" ที่ย้ายไปรันที่ไหนก็ไม่พัง', bullets: [
+      'เข้าใจปัญหาที่ Docker แก้: "ในเครื่องเราเวิร์ก แต่บนเซิร์ฟเวอร์พัง"',
+      'สร้างไฟล์ตั้งค่าที่จำเป็น (มี template ให้ ไม่ต้องเขียนเอง)',
+      'รันหลังร้าน + ฐานข้อมูลพร้อมกัน แล้วทดสอบบนเครื่องตัวเองก่อนขึ้น cloud'
+    ], result: 'ระบบถูกแพ็กพร้อมย้ายขึ้น cloud', connector: 'ของแพ็กลงกล่องแล้ว เหลือหา "บ้าน" ให้มันอยู่' },
+    { title: 'Module 2 · เช่าเซิร์ฟเวอร์ของคุณเองบน AWS EC2', dur: '~50 นาที', intro: 'มีคอมพิวเตอร์ของตัวเองบน cloud เปิดทำงาน 24 ชม.', bullets: [
+      'สมัคร AWS + รับเครดิตฟรี $100 ไว้ใช้',
+      'เลือกขนาดเซิร์ฟเวอร์ให้พอดีกับงาน ไม่จ่ายเกินจำเป็น',
+      'เชื่อมต่อเข้าเซิร์ฟเวอร์อย่างปลอดภัยด้วย SSH'
+    ], result: 'มีเซิร์ฟเวอร์ของตัวเองพร้อมใช้งาน', connector: 'เข้าเครื่องได้แล้ว ขั้นต่อไปคือเอากล่อง Docker ขึ้นไปรัน' },
+    { title: 'Module 3 · Deploy ขึ้นเซิร์ฟเวอร์จริง', dur: '~40 นาที', intro: 'เอาระบบขึ้นรันบนเซิร์ฟเวอร์ของตัวเองได้สำเร็จ', bullets: [
+      'ติดตั้ง Docker บนเซิร์ฟเวอร์ แล้วรันระบบขึ้นจริง',
+      'ได้ deploy script ไว้สั่งอัปเดตซ้ำได้ทุกครั้งแบบง่ายๆ'
+    ], result: 'หลังร้านของคุณรันบนเซิร์ฟเวอร์ตัวเองแล้ว', connector: 'ระบบทำงานแล้ว เหลือใส่ชื่อเว็บ + กุญแจล็อกให้ดูเป็นมืออาชีพ' },
+    { title: 'Module 4 · ใส่โดเมน + HTTPS ให้น่าเชื่อถือ', dur: '~30 นาที', intro: 'ทำให้คนเข้าเว็บผ่านชื่อจริง พร้อมกุญแจล็อกความปลอดภัย', bullets: [
+      'ผูกโดเมน + ตั้งค่าให้ชี้มาที่เซิร์ฟเวอร์ (DNS = สมุดโทรศัพท์ของอินเทอร์เน็ต)',
+      'ติดใบรับรอง HTTPS ฟรี ที่ต่ออายุให้อัตโนมัติ'
+    ], result: 'ระบบ live เต็มรูปแบบบนโดเมนของคุณเอง พร้อม HTTPS', connector: '' },
+    { title: '🎁 ปิดท้าย Advanced', dur: '~10 นาที', intro: '', bullets: [
+      'Checklist ระดับ production: ความปลอดภัย, สำรองข้อมูล, คุมค่าใช้จ่าย',
+      'รู้ว่าเมื่อไหร่และยังไงที่ควร scale ต่อไป'
+    ], result: '', connector: '' }
+  ];
+
+  function moduleHtml(m) {
+    var bullets = m.bullets.map(function (b) {
+      return '<li style="display:flex; gap:10px; font-size:14px; line-height:1.55; color:#D4D4D4;"><span style="color:#FF6B00; flex-shrink:0;">▸</span> ' + esc(b) + '</li>';
+    }).join('');
+    var html = '' +
+      '<div style="background:#111; border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:22px 24px;">' +
+        '<div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:12px;">' +
+          '<h4 style="font-size:16.5px; font-weight:700; margin:0; line-height:1.45;">' + esc(m.title) + '</h4>' +
+          '<span style="font-family:\'IBM Plex Mono\',monospace; font-size:12px; color:#FF6B00; white-space:nowrap;">⏱️ ' + esc(m.dur) + '</span>' +
+        '</div>' +
+        (m.intro ? '<p style="font-size:13.5px; color:#9a9a9a; margin:0 0 12px; line-height:1.55;"><strong style="color:#cfcfcf;">สิ่งที่คุณจะทำได้:</strong> ' + esc(m.intro) + '</p>' : '') +
+        '<ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;">' + bullets + '</ul>' +
+        (m.result ? '<div style="margin-top:16px; display:flex; align-items:center; gap:8px; background:rgba(255,107,0,.1); border:1px solid rgba(255,107,0,.28); border-radius:10px; padding:11px 15px; font-size:13.5px; line-height:1.45; color:#FFD9BD;"><strong style="color:#FF6B00; white-space:nowrap;">✅ ผลลัพธ์:</strong> ' + esc(m.result) + '</div>' : '') +
+      '</div>';
+    if (m.connector) {
+      html += '<p style="text-align:center; font-size:13px; font-style:italic; color:#6f6f6f; margin:0; line-height:1.5;">' + esc(m.connector) + '</p>';
+    }
+    return html;
+  }
+
+  function partHtml(opts) {
+    var modules = opts.modules.map(moduleHtml).join('');
+    return '' +
+      '<div>' +
+        '<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px;">' +
+          opts.badge +
+          '<span style="font-size:13px; color:' + opts.durColor + '; font-weight:600;">3 ชม.</span>' +
+          (opts.bonus ? '<span style="font-size:11.5px; font-weight:600; color:#FF6B00; border:1px solid rgba(255,107,0,.4); padding:3px 8px; border-radius:6px;">โบนัส</span>' : '') +
+        '</div>' +
+        '<h3 style="font-size:21px; font-weight:700; margin:6px 0 4px; line-height:1.4;">' + opts.heading + '</h3>' +
+        '<div style="font-size:14px; line-height:1.6; color:#B5B5B5; margin:0 0 ' + (opts.note ? '16px' : '22px') + ';">' + opts.meta + '</div>' +
+        (opts.note || '') +
+        '<div style="display:flex; flex-direction:column; gap:14px;">' + modules + '</div>' +
+      '</div>';
+  }
+
+  function buildModal() {
+    var p1 = partHtml({
+      badge: '<span style="font-family:\'IBM Plex Mono\',monospace; font-size:12px; font-weight:600; color:#0A0A0A; background:#FF6B00; padding:4px 10px; border-radius:6px;">PART 1 — CORE</span>',
+      durColor: '#FF6B00', bonus: false,
+      heading: 'เอา idea ขึ้น live ใน 3 ชั่วโมง · ด้วย Vercel + Supabase',
+      meta: '<strong style="color:#FF9d5c;">จบพาร์ทนี้คุณจะมี:</strong> เว็บ/แอปบนชื่อโดเมนของตัวเอง ที่เปิดจากมือถือใครก็ใช้งานได้จริง · <strong style="color:#cfcfcf;">เหมาะกับ:</strong> ทุกคนที่เริ่มต้น',
+      modules: part1
+    });
+    var p2 = partHtml({
+      badge: '<span style="font-family:\'IBM Plex Mono\',monospace; font-size:12px; font-weight:600; color:#fff; background:#2a2a2a; padding:4px 10px; border-radius:6px;">PART 2 — ADVANCED</span>',
+      durColor: '#9a9a9a', bonus: true,
+      heading: 'เป็นเจ้าของเซิร์ฟเวอร์ตัวเอง · ด้วย Docker + AWS',
+      meta: '<strong style="color:#FF9d5c;">จบพาร์ทนี้คุณจะมี:</strong> หลังร้านที่รันบนเซิร์ฟเวอร์ส่วนตัวของคุณเอง คุมได้ scale ได้ · <strong style="color:#cfcfcf;">เหมาะกับ:</strong> คนที่ทดสอบตลาดผ่านแล้ว — ทำเมื่อพร้อม ไม่บังคับ',
+      note: '<div style="background:rgba(255,107,0,.06); border:1px solid rgba(255,107,0,.22); border-radius:12px; padding:16px 18px; font-size:13.5px; line-height:1.65; color:#C9C9C9; margin-bottom:22px;"><strong style="color:#FF6B00;">💡 พาร์ทนี้คือ "ย้ายบ้าน" ไม่ใช่ "เริ่มใหม่"</strong> — Vercel เยี่ยมสำหรับการเริ่มต้น แต่เมื่อแอปต้องรันงานหนักนานๆ มีผู้ใช้เยอะจนค่าบริการพุ่ง หรือคุณอยากคุมทุกอย่างเอง นี่คือสัญญาณว่าถึงเวลามีเซิร์ฟเวอร์ของตัวเอง — เราจะย้ายหลังร้านไป โดยหน้าร้านยังอยู่ที่เดิมได้ ไม่มีงานไหนเสียเปล่า</div>',
+      modules: part2
+    });
+    var summary = '' +
+      '<div style="background:linear-gradient(90deg,rgba(255,107,0,.1),rgba(255,107,0,.03)); border:1px solid rgba(255,107,0,.28); border-radius:14px; padding:22px 24px; display:flex; flex-direction:column; gap:8px;">' +
+        '<div style="font-size:15px; line-height:1.6; color:#EAEAEA;">⏱️ <strong>Core 3 ชม. + Advanced 3 ชม.</strong> = เนื้อหาเต็ม 6 ชม. ทำตามไปพร้อมวิดีโอได้</div>' +
+        '<div style="font-size:14px; line-height:1.6; color:#B5B5B5;">✅ ทุกโมดูลจบด้วยผลลัพธ์ที่จับต้องได้ — เห็นความคืบหน้าตลอดทาง · Part 2 เป็นของแถมมูลค่าสูงที่ทำเมื่อพร้อม ไม่กดดันคนเริ่มต้น</div>' +
+      '</div>';
+    var closeRow = '' +
+      '<div style="display:flex; justify-content:center; padding-top:4px;">' +
+        '<button data-modal-close class="modal-close-btn" style="font-family:inherit; font-size:14.5px; font-weight:600; color:#cfcfcf; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); padding:12px 26px; border-radius:11px; cursor:pointer; transition:all .2s;">ปิดหน้าต่าง</button>' +
+      '</div>';
+    document.querySelector('[data-modal-body]').innerHTML = p1 + p2 + summary + closeRow;
+  }
+
+  var modal = document.querySelector('[data-modal]');
+  var built = false;
+  function openModal() {
+    if (!built) { buildModal(); built = true; bindCloseButtons(); }
+    document.body.style.overflow = 'hidden';
+    modal.hidden = false;
+  }
+  function closeModal() {
+    document.body.style.overflow = '';
+    modal.hidden = true;
+  }
+  function bindCloseButtons() {
+    document.querySelectorAll('[data-modal-close]').forEach(function (b) {
+      b.addEventListener('click', closeModal);
+    });
+  }
+
+  document.querySelector('[data-modal-open]').addEventListener('click', openModal);
+  bindCloseButtons();
+  // click backdrop closes; clicks inside panel don't
+  modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+  document.querySelector('[data-modal-panel]').addEventListener('click', function (e) { e.stopPropagation(); });
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+  });
+})();
+</script>
+</body>
+</html>
